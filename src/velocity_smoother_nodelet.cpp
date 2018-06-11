@@ -63,14 +63,17 @@ namespace yocs_velocity_smoother {
   void VelocitySmoother::reconfigCB(yocs_velocity_smoother::paramsConfig &config, uint32_t level)
   {
     ROS_INFO("Reconfigure request : %f %f %f %f %f",
-             config.speed_lim_v, config.speed_lim_w, config.accel_lim_v, config.accel_lim_w, config.decel_factor);
+             config.speed_lim_v_x, config.speed_lim_v_y, config.speed_lim_w, config.accel_lim_v_x, config.accel_lim_v_y, config.accel_lim_w, config.decel_factor);
 
-    speed_lim_v_x  = config.speed_lim_v;
+    speed_lim_v_x  = config.speed_lim_v_x;
+    speed_lim_v_y  = config.speed_lim_v_y;
     speed_lim_w  = config.speed_lim_w;
-    accel_lim_v_x  = config.accel_lim_v;
+    accel_lim_v_x  = config.accel_lim_v_x;
+    accel_lim_v_y  = config.accel_lim_v_y;
     accel_lim_w  = config.accel_lim_w;
     decel_factor = config.decel_factor;
     decel_lim_v_x  = decel_factor*accel_lim_v_x;
+    decel_lim_v_y  = decel_factor*accel_lim_v_y;
     decel_lim_w  = decel_factor*accel_lim_w;
   }
 
